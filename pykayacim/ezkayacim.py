@@ -62,7 +62,8 @@ def _send_notification(args):
     except exceptions.PyKayacIMError as err:
         _ez_logger.exceptions("Failed: %s", err)
         sys.exit(-1)
-    _ez_logger.info("Successfully sent a notification.")
+    else:
+        _ez_logger.info("Successfully sent a notification.")
         
 
 def main():
