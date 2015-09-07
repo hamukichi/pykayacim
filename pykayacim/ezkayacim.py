@@ -17,7 +17,7 @@ import builtins
 import logging
 import atexit
 
-_ez_logger = logging.getLogger(__name__)
+_ez_logger = logging.getLogger()
 
 @atexit.register
 def finish():
