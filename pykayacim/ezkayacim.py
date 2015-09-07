@@ -14,7 +14,18 @@ import pykayacim.exceptions
 import argparse
 import sys
 import builtins
+import logging
+import atexit
 
+_ez_logger = logging.getLogger(__name__)
+
+@atexit.register
+def finish():
+    """Called when this command-line tool exits.
+    
+    """
+    
+    _ez_logger.info("EzKayacIM exits.")
 
 def decode_params(params):
     """Decode values of the provided dictionary if necessary. 
@@ -27,6 +38,7 @@ def decode_params(params):
             decoded_params[k] = v.decode(sys.stdin.encoding)
         else:
             decoded_params[k] = v
+    _ez_logger.debug("Decoded the provided parameters.")
     return decoded_params
 
 def _send_notification(args):
@@ -41,13 +53,29 @@ def _send_notification(args):
     elif args.method == "secret":
         init_params["key"] = args.secret
     
+    _ez_logger.debug("Initializing an KayacIMAPI instance.")
     api = pykayacim.api.KayacIMAPI(**decode_params(init_params))
-    api.send(**send_params)
+    
+    _ez_logger.debug("Sending a notification.")
+    try:
+        api.send(**send_params)
+    except exceptions.PyKayacIMError as err:
+        _ez_logger.exceptions("Failed: %s", err)
+        sys.exit(-1)
+    _ez_logger.info("Successfully sent a notification.")
+        
 
 def main():
     """Used if this module is run as a script.
     
     """
+    
+    # Logging
+    _ez_logger.setLevel(logging.DEBUG)
+    console_handler = logging.StreamHandler()
+    console_handler.setLevel(logging.ERROR)
+    _ez_logger.addHandler(console_handler)
+    _ez_logger.info("EzKayacIM started.")
     
     # Top-level
     parser = argparse.ArgumentParser(

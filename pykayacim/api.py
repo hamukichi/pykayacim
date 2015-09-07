@@ -180,7 +180,7 @@ class KayacIMAPI(object):
                 _api_logger.error("API Error: {errmsg}".format(errmsg=errmsg))
                 raise exceptions.PyKayacIMAPIError(errmsg=errmsg)
             else:
-                _api_logger.info("Sent the message to {username}".format(
+                _api_logger.info("Sent the notification to {username}".format(
                 username=self.username))
 
     def send(self, message, handler=None):
