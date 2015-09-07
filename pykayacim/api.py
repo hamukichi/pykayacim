@@ -158,7 +158,7 @@ class KayacIMAPI(object):
 
         """
 
-        _api_logger.debug("Connecting: {url}".format(self.post_url))
+        _api_logger.debug("Connecting: {url}".format(url=self.post_url))
         try:
             with contextlib.closing(
                     urllib.request.urlopen(self.post_request)) as res:
