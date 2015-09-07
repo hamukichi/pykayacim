@@ -41,7 +41,7 @@ def _send_notification(args):
     elif args.method == "secret":
         init_params["key"] = args.secret
     
-    api = pykayacim.api.KayacIMAPI(**init_params)
+    api = pykayacim.api.KayacIMAPI(**decode_params(init_params))
     api.send(**send_params)
 
 def main():
