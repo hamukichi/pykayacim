@@ -108,6 +108,8 @@ class KayacIMAPI(object):
         self.post_params = dict()
         #: The object representing the request sent to im.kayac.com.
         self.post_request = None
+        #: The dictionary representing the response from im.kayac.com.
+        self.post_response = None
 
     def prepare_parameters(self, message, handler=None):
         """Creates a dictionary representing the provided parameters.
@@ -149,7 +151,6 @@ class KayacIMAPI(object):
         try:
             with contextlib.closing(
                     urllib.request.urlopen(self.post_request)) as res:
-                #: The dictionary representing the response from im.kayac.com.
                 self.post_response = json.loads(
                     res.read().decode(constants.KAYACIM_ENCODING))
         except urllib.error.URLError as e:
