@@ -99,7 +99,7 @@ class KayacIMAPI(object):
             #: The authorization method im.kayac.com accepts.
             self.method = method
         else:
-            _api_logger.critical("Unavailable method: '{method}'".format{method})
+            _api_logger.critical("Unavailable method: '{method}'".format(method=method))
             raise exceptions.PyKayacIMMethodError(
                 details="The method '{method}' is unavailable.".format(
                     method=method))
