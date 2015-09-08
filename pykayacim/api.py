@@ -41,7 +41,7 @@ def create_post_request(url, params, encoding=constants.KAYACIM_ENCODING):
     """
 
     # Encode strings
-    enc_params = {k: v.encode(encoding) for k, v in params.items()}
+    enc_params = dict((k, v.encode(encoding)) for k, v in params.items())
 
     # URL-encode parameters
     _api_logger.debug("URL-encoding the parameters.")
