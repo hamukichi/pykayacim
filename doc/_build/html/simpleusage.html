@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Simple Usage &mdash; PyKayacIM 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="PyKayacIM 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="API Documentation" href="api.html" />
+    <link rel="prev" title="Prerequisites" href="prerequisites.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="simple-usage">
+<h1>Simple Usage<a class="headerlink" href="#simple-usage" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="try-pykayacim-on-the-python-interactive-interpereter">
+<h2>Try PyKayacIM on the Python interactive interpereter<a class="headerlink" href="#try-pykayacim-on-the-python-interactive-interpereter" title="Permalink to this headline">¶</a></h2>
+<p>To send a push notification using PyKayacIM, just follow these three steps:</p>
+<ol class="arabic simple">
+<li>Import the module <a class="reference internal" href="api.html#module-pykayacim.api" title="pykayacim.api"><code class="xref py py-mod docutils literal"><span class="pre">pykayacim.api</span></code></a> , which is the core module of
+PyKayacIM.</li>
+<li>Intialize an instance of <a class="reference internal" href="api.html#pykayacim.api.KayacIMAPI" title="pykayacim.api.KayacIMAPI"><code class="xref py py-class docutils literal"><span class="pre">pykayacim.api.KayacIMAPI</span></code></a> by providing
+your user credentials.</li>
+<li>Invoke <a class="reference internal" href="api.html#pykayacim.api.KayacIMAPI.send" title="pykayacim.api.KayacIMAPI.send"><code class="xref py py-meth docutils literal"><span class="pre">pykayacim.api.KayacIMAPI.send()</span></code></a> to send a notification.</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Step 1</span>
+<span class="kn">import</span> <span class="nn">pykayacim.api</span> <span class="c"># Import the core module.</span>
+
+<span class="c"># Step 2</span>
+<span class="c"># Read the rest of this document for details about the parameters.</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">pykayacim</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">KayacIMAPI</span><span class="p">(</span> <span class="c"># Initialize an instance.</span>
+    <span class="n">username</span><span class="o">=</span><span class="s">u&quot;yourusername&quot;</span><span class="p">,</span> <span class="c"># The username of your account.</span>
+    <span class="n">method</span><span class="o">=</span><span class="s">u&quot;secret&quot;</span><span class="p">,</span> <span class="c"># Authorize using the secret key cryptosystem.</span>
+    <span class="n">key</span><span class="o">=</span><span class="s">u&quot;yoursecretkey&quot;</span><span class="p">)</span> <span class="c"># Your secret key for authorization.</span>
+
+<span class="c"># Step 3</span>
+<span class="n">api</span><span class="o">.</span><span class="n">send</span><span class="p">(</span> <span class="c"># Send a notification.</span>
+    <span class="n">message</span><span class="o">=</span><span class="s">u&quot;Hello. こんにちは。&quot;</span> <span class="c"># The message.</span>
+    <span class="n">handler</span><span class="o">=</span><span class="s">u&quot;mailto:example@example.com&quot;</span><span class="p">)</span> <span class="c"># The URI scheme (optional).</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="use-the-command-line-tool-of-pykayacim">
+<h2>Use the command-line tool of PyKayacIM<a class="headerlink" href="#use-the-command-line-tool-of-pykayacim" title="Permalink to this headline">¶</a></h2>
+<p>PyKayacIM has a command-line tool named <code class="docutils literal"><span class="pre">ezkayacim</span></code>. This tool will be
+installed into the directory <code class="docutils literal"><span class="pre">Scripts</span></code>. For detailed information
+execute <code class="docutils literal"><span class="pre">ezkayacim</span> <span class="pre">--help</span></code>.</p>
+<div class="highlight-none"><div class="highlight"><pre>ezkayacim none -s mailto:example@example.com yourusername &quot;Your message&quot;
+ezkayacim password -s http://example.com yourusername メッセージ yourpassword
+ezkayacim secret yourusername message yourkey
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">PyKayacIM</a></h1>
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=hamukichi&repo=pykayacim&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Simple Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#try-pykayacim-on-the-python-interactive-interpereter">Try PyKayacIM on the Python interactive interpereter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-the-command-line-tool-of-pykayacim">Use the command-line tool of PyKayacIM</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Documentation</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="prerequisites.html" title="previous chapter">Prerequisites</a></li>
+      <li>Next: <a href="api.html" title="next chapter">API Documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Hamukichi (Nombiri).
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      
+      |
+      <a href="_sources/simpleusage.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
