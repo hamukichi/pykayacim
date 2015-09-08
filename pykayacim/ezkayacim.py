@@ -77,7 +77,7 @@ def main():
     console_handler.setLevel(logging.ERROR)
     formatter = logging.Formatter(
     "[%(asctime)s] %(name)s - %(levelname)s - %(message)s")
-    console_hander.setFormatter(formatter)
+    console_handler.setFormatter(formatter)
     _ez_logger.addHandler(console_handler)
     _ez_logger.info("EzKayacIM started.")
     
