@@ -158,6 +158,13 @@ class KayacIMAPI(object):
 
         """
 
+        if self.post_request is None:
+            _api_logger.error(
+            "No message was sent to {username} previously.".format(
+            username=self.username))
+            raise exceptions.PyKayacIMMessageError(
+            details="No message was sent to {username} previously.".format(
+            username=self.username))
         _api_logger.debug("Connecting: {url}".format(url=self.post_url))
         try:
             with contextlib.closing(
