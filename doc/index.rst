@@ -6,7 +6,16 @@
 Welcome to PyKayacIM's documentation!
 =====================================
 
-Contents:
+PyKayacIM is a simple package for sending push notifications via
+`im.kayac.com <http://im.kayac.com/en/>`_
+(`Japanese <http://im.kayac.com/ja/>`_) to your iPhone or Jabbler account.
+
+.. code-block:: python
+
+    >>> import pykayacim.api
+    >>> api = pykayacim.api.KayacIMAPI(
+            username=u"username", method=u"secret", key=u"secret_key")
+    >>> api.send(u"Hello!")
 
 .. toctree::
    :maxdepth: 2
