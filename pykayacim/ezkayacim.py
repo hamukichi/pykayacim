@@ -17,7 +17,8 @@ import builtins
 import logging
 import atexit
 
-_ez_logger = logging.getLogger()
+_ez_logger = logging.getLogger(__name__)
+api_logger = logging.getLogger(pykayacim.api.__name__)
 
 @atexit.register
 def finish():
@@ -79,6 +80,7 @@ def main():
     "%(levelname)s: %(name)s - %(message)s")
     console_handler.setFormatter(formatter)
     _ez_logger.addHandler(console_handler)
+    api_logger.addHandler(console_handler)
     _ez_logger.info("EzKayacIM started.")
     
     
