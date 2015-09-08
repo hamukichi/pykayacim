@@ -60,7 +60,7 @@ def _send_notification(args):
     try:
         api.send(**send_params)
     except pykayacim.exceptions.PyKayacIMError as err:
-        _ez_logger.exceptions("Failed: %s", err)
+        _ez_logger.exception("Failed: %s", err)
         sys.exit(-1)
     else:
         _ez_logger.info("Successfully sent a notification.")
