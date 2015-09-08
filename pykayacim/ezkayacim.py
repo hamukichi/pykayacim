@@ -50,9 +50,9 @@ def _send_notification(args):
     init_params = {"username": args.username, "method": args.method}
     send_params = {"message": args.message, "handler": args.scheme}
     if args.method == "password":
-        init_params["key"] = args.password
+        init_params["key"] = args.key
     elif args.method == "secret":
-        init_params["key"] = args.secret
+        init_params["key"] = args.key
     
     _ez_logger.debug("Initializing an KayacIMAPI instance.")
     api = pykayacim.api.KayacIMAPI(**decode_params(init_params))
@@ -115,7 +115,7 @@ def main():
         help="The URI scheme for iPhone applications.")
     
     # Other arguments
-    parser_password.add_argument("password",
+    parser_password.add_argument("key",
     help="The password for notifications, not for your account.")
     parser_secret.add_argument("key",
     help="The secret key for sending notifications.")
