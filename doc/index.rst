@@ -21,6 +21,7 @@ PyKayacIM is a simple package for sending push notifications via
    :maxdepth: 2
    
    prerequisites
+   simpleusage
 
 
 
