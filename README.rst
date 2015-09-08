@@ -12,9 +12,9 @@ PyKayacIM is a simple package for sending push notifications via
 Features
 ========
 
-* Pure-Python package
+* Pure-Python package.
 * Python 2/3 compatible (thanks to
   `Python-Future <http://python-future.org/>`_ package).
-* Includes a simple command-line tool
-* Supports non-English message
+* Includes a simple command-line tool.
+* Supports non-English message.
 
