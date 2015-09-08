@@ -175,8 +175,7 @@ class KayacIMAPI(object):
                 errmsg="Invalid response from im.kayac.com.")
         else:
             if self.post_response["result"] != u"posted":
-                errmsg=self.post_response["error"].decode(
-                    constants.KAYACIM_ENCODING)
+                errmsg=self.post_response["error"]
                 _api_logger.error("API Error: {errmsg}".format(errmsg=errmsg))
                 raise exceptions.PyKayacIMAPIError(errmsg=errmsg)
             else:
