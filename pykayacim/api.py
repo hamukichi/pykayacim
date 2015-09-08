@@ -100,7 +100,8 @@ class KayacIMAPI(object):
             #: The authorization method im.kayac.com accepts.
             self.method = method
         else:
-            api_logger.critical("Unavailable method: '{method}'".format(method=method))
+            api_logger.critical(
+                "Unavailable method: '{method}'".format(method=method))
             raise exceptions.PyKayacIMMethodError(
                 details="The method '{method}' is unavailable.".format(
                     method=method))
@@ -158,16 +159,16 @@ class KayacIMAPI(object):
                                                                   fails
         :raises pykayacim.exceptions.PyKayacIMMessageError: if no message was
                                                             sent previously
-        
+
         """
 
         if self.post_request is None:
             api_logger.error(
-            "No message was sent to {username} previously.".format(
-            username=self.username))
+                "No message was sent to {username} previously.".format(
+                    username=self.username))
             raise exceptions.PyKayacIMMessageError(
-            details="No message was sent to {username} previously.".format(
-            username=self.username))
+                details="No message was sent to {username} previously.".format(
+                    username=self.username))
         api_logger.debug("Connecting: {url}".format(url=self.post_url))
         try:
             with contextlib.closing(
@@ -185,12 +186,12 @@ class KayacIMAPI(object):
                 errmsg="Invalid response from im.kayac.com.")
         else:
             if self.post_response["result"] != u"posted":
-                errmsg=self.post_response["error"]
+                errmsg = self.post_response["error"]
                 api_logger.error("API Error: {errmsg}".format(errmsg=errmsg))
                 raise exceptions.PyKayacIMAPIError(errmsg=errmsg)
             else:
                 api_logger.info("Sent the notification to {username}".format(
-                username=self.username))
+                    username=self.username))
 
     def send(self, message, handler=None):
         """Send a push notification via im.kayac.com.
