@@ -20,6 +20,7 @@ import json
 import urllib.error
 import logging
 
+#: The logger for this module.
 api_logger = logging.getLogger(__name__)
 
 
@@ -155,7 +156,9 @@ class KayacIMAPI(object):
                                                                   with
                                                                   im.kayac.com
                                                                   fails
-
+        :raises pykayacim.exceptions.PyKayacIMMessageError: if no message was
+                                                            sent previously
+        
         """
 
         if self.post_request is None:
