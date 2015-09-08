@@ -19,6 +19,8 @@ PyKayacIM is a simple package for sending push notifications via
 
 .. toctree::
    :maxdepth: 2
+   
+   prerequisites
 
 
 
