@@ -17,7 +17,7 @@ import builtins
 import logging
 import atexit
 
-_ez_logger = logging.getLogger(__name__)
+_ez_logger = logging.getLogger("EzKayacIM")
 api_logger = logging.getLogger(pykayacim.api.__name__)
 
 @atexit.register
