@@ -11,5 +11,5 @@ account, or Google Talk account.
 
 __author__ = "Hamukichi (Nombiri)"
 __version__ = "0.1.0"
-__date__ = "2015-09-05"
+__date__ = "2015-09-08"
 __licence__ = "MIT License"
