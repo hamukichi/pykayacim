@@ -20,7 +20,7 @@ import json
 import urllib.error
 import logging
 
-_api_logger = logging.getLogger(__name__)
+api_logger = logging.getLogger(__name__)
 
 
 def create_post_request(url, params, encoding=constants.KAYACIM_ENCODING):
@@ -44,11 +44,11 @@ def create_post_request(url, params, encoding=constants.KAYACIM_ENCODING):
     enc_params = dict((k, v.encode(encoding)) for k, v in params.items())
 
     # URL-encode parameters
-    _api_logger.debug("URL-encoding the parameters.")
+    api_logger.debug("URL-encoding the parameters.")
     urlenc_params = urllib.parse.urlencode(enc_params).encode(encoding)
 
     # Create a request
-    _api_logger.debug("Creating an HTTP POST request.")
+    api_logger.debug("Creating an HTTP POST request.")
     return urllib.request.Request(url=url, data=urlenc_params)
 
 
@@ -63,7 +63,7 @@ def generate_signature(data, encoding=constants.KAYACIM_ENCODING):
 
     """
 
-    _api_logger.debug("Generating a SHA-1 digest.")
+    api_logger.debug("Generating a SHA-1 digest.")
     return builtins.str(hashlib.sha1(data.encode(encoding)
                                      ).hexdigest())
 
@@ -99,7 +99,7 @@ class KayacIMAPI(object):
             #: The authorization method im.kayac.com accepts.
             self.method = method
         else:
-            _api_logger.critical("Unavailable method: '{method}'".format(method=method))
+            api_logger.critical("Unavailable method: '{method}'".format(method=method))
             raise exceptions.PyKayacIMMethodError(
                 details="The method '{method}' is unavailable.".format(
                     method=method))
@@ -108,7 +108,7 @@ class KayacIMAPI(object):
                 #: The password or secret key.
                 self.key = key
             else:
-                _api_logger.critical("Missing parameter: 'key'")
+                api_logger.critical("Missing parameter: 'key'")
                 raise exceptions.PyKayacIMMethodError(
                     details="Provide 'key' for '{method}'.".format(
                         method=method))
@@ -118,7 +118,7 @@ class KayacIMAPI(object):
         self.post_request = None
         #: The dictionary representing the response from im.kayac.com.
         self.post_response = None
-        _api_logger.debug("Successfully initialized a KayacIMAPI instance.")
+        api_logger.debug("Successfully initialized a KayacIMAPI instance.")
 
     def prepare_parameters(self, message, handler=None):
         """Creates a dictionary representing the provided parameters.
@@ -143,7 +143,7 @@ class KayacIMAPI(object):
         elif self.method == "secret":
             self.post_params["sig"] = generate_signature(
                 message + self.key)
-        _api_logger.debug("Prepared the parameters for the POST request.")
+        api_logger.debug("Prepared the parameters for the POST request.")
 
     def resend(self):
         """Resend the previous message.
@@ -159,34 +159,34 @@ class KayacIMAPI(object):
         """
 
         if self.post_request is None:
-            _api_logger.error(
+            api_logger.error(
             "No message was sent to {username} previously.".format(
             username=self.username))
             raise exceptions.PyKayacIMMessageError(
             details="No message was sent to {username} previously.".format(
             username=self.username))
-        _api_logger.debug("Connecting: {url}".format(url=self.post_url))
+        api_logger.debug("Connecting: {url}".format(url=self.post_url))
         try:
             with contextlib.closing(
                     urllib.request.urlopen(self.post_request)) as res:
-                _api_logger.debug("Analyzing the response.")
+                api_logger.debug("Analyzing the response.")
                 self.post_response = json.loads(
                     res.read().decode(constants.KAYACIM_ENCODING))
         except urllib.error.URLError as e:
-            _api_logger.exception("Communication failed: %s", e)
+            api_logger.exception("Communication failed: %s", e)
             raise exceptions.PyKayacIMCommunicationError(
                 reason=builtins.str(e.reason))
         except ValueError as e:
-            _api_logger.exception("Invalid response: %s", e)
+            api_logger.exception("Invalid response: %s", e)
             raise exceptions.PyKayacIMAPIError(
                 errmsg="Invalid response from im.kayac.com.")
         else:
             if self.post_response["result"] != u"posted":
                 errmsg=self.post_response["error"]
-                _api_logger.error("API Error: {errmsg}".format(errmsg=errmsg))
+                api_logger.error("API Error: {errmsg}".format(errmsg=errmsg))
                 raise exceptions.PyKayacIMAPIError(errmsg=errmsg)
             else:
-                _api_logger.info("Sent the notification to {username}".format(
+                api_logger.info("Sent the notification to {username}".format(
                 username=self.username))
 
     def send(self, message, handler=None):
