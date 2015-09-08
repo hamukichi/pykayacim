@@ -50,7 +50,7 @@ def _send_notification(args):
     init_params = {"username": args.username, "method": args.method}
     send_params = {"message": args.message, "handler": args.scheme}
     if args.method == "password":
-        init_params["key"] = args.key
+        init_params["key"] = args.pw
     elif args.method == "secret":
         init_params["key"] = args.key
     
@@ -99,7 +99,7 @@ def main():
 
     parser_password = subparsers.add_parser("password",
     help="Use authorization with a password.")
-    parser_none.set_defaults(func=_send_notification)
+    parser_password.set_defaults(func=_send_notification)
     
     parser_secret = subparsers.add_parser("secret",
     help="Use secret key cryptosystem.")
@@ -115,7 +115,7 @@ def main():
         help="The URI scheme for iPhone applications.")
     
     # Other arguments
-    parser_password.add_argument("key",
+    parser_password.add_argument("pw",
     help="The password for notifications, not for your account.")
     parser_secret.add_argument("key",
     help="The secret key for sending notifications.")
