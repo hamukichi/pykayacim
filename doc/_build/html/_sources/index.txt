@@ -22,6 +22,7 @@ PyKayacIM is a simple package for sending push notifications via
    
    prerequisites
    simpleusage
+   api
 
 
 
