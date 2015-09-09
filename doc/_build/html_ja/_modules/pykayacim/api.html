@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pykayacim.api &mdash; PyKayacIM 0.1.0 ドキュメント</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="PyKayacIM 0.1.0 ドキュメント" href="../../index.html" />
+    <link rel="up" title="モジュールコード" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">PyKayacIM 0.1.0 ドキュメント</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">モジュールコード</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>pykayacim.api のソースコード</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;This module is for communicating with im.kayac.com.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">exceptions</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">constants</span>
+<span class="kn">import</span> <span class="nn">future.standard_library</span>
+<span class="n">future</span><span class="o">.</span><span class="n">standard_library</span><span class="o">.</span><span class="n">install_aliases</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">builtins</span>
+<span class="kn">import</span> <span class="nn">urllib.parse</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">contextlib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">urllib.error</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c">#: The logger for this module.</span>
+<span class="n">api_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_post_request"><a class="viewcode-back" href="../../api.html#pykayacim.api.create_post_request">[ドキュメント]</a><span class="k">def</span> <span class="nf">create_post_request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">KAYACIM_ENCODING</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;URL-encode the parameters and create a POST request.</span>
+
+<span class="sd">    :param url: The URL where a POST request should be sent.</span>
+<span class="sd">    :type url: str (on Python 3) or unicode (on Python 2)</span>
+<span class="sd">    :param dict params: The dictionary representing the parameters,</span>
+<span class="sd">                        whose values should be str (on Python 3) or</span>
+<span class="sd">                        unicode (on Python 2).</span>
+<span class="sd">    :param encoding: The encoding should be used.</span>
+<span class="sd">    :type encoding: str (on Python 3) or unicode (on Python 2)</span>
+<span class="sd">    :return: an HTTP POST request</span>
+<span class="sd">    :rtype: :class:`urllib.request.Request` (on Python 3) or</span>
+<span class="sd">            :class:`future.backports.urllib.request.Request`</span>
+<span class="sd">            (on Python 2)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># Encode strings</span>
+    <span class="n">enc_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+
+    <span class="c"># URL-encode parameters</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;URL-encoding the parameters.&quot;</span><span class="p">)</span>
+    <span class="n">urlenc_params</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">enc_params</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+
+    <span class="c"># Create a request</span>
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Creating an HTTP POST request.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">urlenc_params</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="generate_signature"><a class="viewcode-back" href="../../api.html#pykayacim.api.generate_signature">[ドキュメント]</a><span class="k">def</span> <span class="nf">generate_signature</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">constants</span><span class="o">.</span><span class="n">KAYACIM_ENCODING</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate the SHA-1 digest of the given string.</span>
+
+<span class="sd">    :param data: The string should be processed.</span>
+<span class="sd">    :type data: str (on Python 3) or unicode (on Python 2)</span>
+<span class="sd">    :return: the SHA-1 digest</span>
+<span class="sd">    :rtype: str (on Python 3) or</span>
+<span class="sd">            :class:`future.types.newstr.newstr` (on Python 2)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Generating a SHA-1 digest.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">builtins</span><span class="o">.</span><span class="n">str</span><span class="p">(</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span>
+                                     <span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span>
+
+</div>
+<div class="viewcode-block" id="KayacIMAPI"><a class="viewcode-back" href="../../api.html#pykayacim.api.KayacIMAPI">[ドキュメント]</a><span class="k">class</span> <span class="nc">KayacIMAPI</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class for accessing im.kayac.com API.</span>
+
+<span class="sd">    :param username: The username for your account.</span>
+<span class="sd">    :type username: str (on Python 3) or unicode (on Python 2)</span>
+<span class="sd">    :param method: (optional) The authorization method. Choose</span>
+<span class="sd">                       from</span>
+<span class="sd">                       :data:`pykayacim.constants.KAYACIM_METHODS`.</span>
+<span class="sd">    :type method: str (on Python 3) or unicode (on Python 2)</span>
+<span class="sd">    :param key: (optional) The password or secret key.</span>
+<span class="sd">    :type key: str (on Python 3) or unicode (on Python 2)</span>
+<span class="sd">    :raises pykayacim.exceptions.PyKayacIMMethodError: if an</span>
+<span class="sd">                                                       unavailable</span>
+<span class="sd">                                                       method is</span>
+<span class="sd">                                                       specified</span>
+<span class="sd">                                                       or the</span>
+<span class="sd">                                                       provided</span>
+<span class="sd">                                                       information is</span>
+<span class="sd">                                                       insufficient</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;none&quot;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="c">#: The username for your im.kayac.com account.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="c">#: The URL where POST requests should be sent.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_url</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">KAYACIM_URL</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">constants</span><span class="o">.</span><span class="n">KAYACIM_METHODS</span><span class="p">:</span>
+            <span class="c">#: The authorization method im.kayac.com accepts.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span>
+                <span class="s">&quot;Unavailable method: &#39;{method}&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">PyKayacIMMethodError</span><span class="p">(</span>
+                <span class="n">details</span><span class="o">=</span><span class="s">&quot;The method &#39;{method}&#39; is unavailable.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">!=</span> <span class="s">&quot;none&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="c">#: The password or secret key.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s">&quot;Missing parameter: &#39;key&#39;&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">PyKayacIMMethodError</span><span class="p">(</span>
+                    <span class="n">details</span><span class="o">=</span><span class="s">&quot;Provide &#39;key&#39; for &#39;{method}&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">))</span>
+        <span class="c">#: The parameters for a POST request.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="c">#: The object representing the request sent to im.kayac.com.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_request</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="c">#: The dictionary representing the response from im.kayac.com.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_response</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Successfully initialized a KayacIMAPI instance.&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="KayacIMAPI.prepare_parameters"><a class="viewcode-back" href="../../api.html#pykayacim.api.KayacIMAPI.prepare_parameters">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">prepare_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates a dictionary representing the provided parameters.</span>
+
+<span class="sd">        This method is called by</span>
+<span class="sd">        :meth:`pykayacim.api.KayacIMAPI.send`, and does not need to</span>
+<span class="sd">        be called directly.</span>
+
+<span class="sd">        :param message: The message which should be sent.</span>
+<span class="sd">        :type message: str (on Python 3) or unicode (on Python 2)</span>
+<span class="sd">        :param handler: (optional) The URI scheme for iPhone</span>
+<span class="sd">                        applications, which starts with &quot;mailto:&quot;</span>
+<span class="sd">                        for example.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_params</span><span class="p">[</span><span class="s">&quot;message&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="k">if</span> <span class="n">handler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">post_params</span><span class="p">[</span><span class="s">&quot;handler&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">handler</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;password&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">post_params</span><span class="p">[</span><span class="s">&quot;password&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">&quot;secret&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">post_params</span><span class="p">[</span><span class="s">&quot;sig&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">generate_signature</span><span class="p">(</span>
+                <span class="n">message</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Prepared the parameters for the POST request.&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="KayacIMAPI.resend"><a class="viewcode-back" href="../../api.html#pykayacim.api.KayacIMAPI.resend">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">resend</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Resend the previous message.</span>
+
+<span class="sd">        :raises pykayacim.exceptions.PyKayacIMAPIError: if im.kayac.com</span>
+<span class="sd">                                                        reports an error</span>
+<span class="sd">        :raises pykayacim.exceptions.PyKayacIMCommunicationError: if</span>
+<span class="sd">                                                                  connection</span>
+<span class="sd">                                                                  with</span>
+<span class="sd">                                                                  im.kayac.com</span>
+<span class="sd">                                                                  fails</span>
+<span class="sd">        :raises pykayacim.exceptions.PyKayacIMMessageError: if no message was</span>
+<span class="sd">                                                            sent previously</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">post_request</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="s">&quot;No message was sent to {username} previously.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">PyKayacIMMessageError</span><span class="p">(</span>
+                <span class="n">details</span><span class="o">=</span><span class="s">&quot;No message was sent to {username} previously.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">))</span>
+        <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Connecting: {url}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">post_url</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">closing</span><span class="p">(</span>
+                    <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">post_request</span><span class="p">))</span> <span class="k">as</span> <span class="n">res</span><span class="p">:</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Analyzing the response.&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">post_response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">constants</span><span class="o">.</span><span class="n">KAYACIM_ENCODING</span><span class="p">))</span>
+        <span class="k">except</span> <span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">URLError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&quot;Communication failed: </span><span class="si">%s</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">PyKayacIMCommunicationError</span><span class="p">(</span>
+                <span class="n">reason</span><span class="o">=</span><span class="n">builtins</span><span class="o">.</span><span class="n">str</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">reason</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">api_logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s">&quot;Invalid response: </span><span class="si">%s</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">PyKayacIMAPIError</span><span class="p">(</span>
+                <span class="n">errmsg</span><span class="o">=</span><span class="s">&quot;Invalid response from im.kayac.com.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">post_response</span><span class="p">[</span><span class="s">&quot;result&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s">u&quot;posted&quot;</span><span class="p">:</span>
+                <span class="n">errmsg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">post_response</span><span class="p">[</span><span class="s">&quot;error&quot;</span><span class="p">]</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&quot;API Error: {errmsg}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">errmsg</span><span class="o">=</span><span class="n">errmsg</span><span class="p">))</span>
+                <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">PyKayacIMAPIError</span><span class="p">(</span><span class="n">errmsg</span><span class="o">=</span><span class="n">errmsg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Sent the notification to {username}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="KayacIMAPI.send"><a class="viewcode-back" href="../../api.html#pykayacim.api.KayacIMAPI.send">[ドキュメント]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Send a push notification via im.kayac.com.</span>
+
+<span class="sd">        :param message: The message which should be sent.</span>
+<span class="sd">        :type message: str (on Python 3) or unicode (on Python 2)</span>
+<span class="sd">        :param handler: (optional) The URI scheme for iPhone applications,</span>
+<span class="sd">                        which starts with &quot;mailto:&quot; for example.</span>
+<span class="sd">        :type handler: str (on Python 3) or unicode (on Python 2)</span>
+<span class="sd">        :raises pykayacim.exceptions.PyKayacIMAPIError: if im.kayac.com</span>
+<span class="sd">                                                        reports an error</span>
+<span class="sd">        :raises pykayacim.exceptions.PyKayacIMCommunicationError: if</span>
+<span class="sd">                                                                  connection</span>
+<span class="sd">                                                                  with</span>
+<span class="sd">                                                                  im.kayac.com</span>
+<span class="sd">                                                                  fails</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">prepare_parameters</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span> <span class="n">handler</span><span class="o">=</span><span class="n">handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">post_request</span> <span class="o">=</span> <span class="n">create_post_request</span><span class="p">(</span>
+            <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">post_url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">post_params</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resend</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">PyKayacIM 0.1.0 ドキュメント</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >モジュールコード</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Hamukichi (Nombiri).
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>
