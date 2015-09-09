@@ -121,7 +121,8 @@ html_theme = 'classic'
 # documentation.
 html_theme_options = {
     "stickysidebar": "true",
-    "externalrefs": "true"
+    "externalrefs": "true",
+    "bodyfont": "Verdana, \"游ゴシック\", YuGothic, \"Hiragino Kaku Gothic ProN\", Meiryo, sans-serif;"
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
