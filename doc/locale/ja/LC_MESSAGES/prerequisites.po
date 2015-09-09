@@ -1,0 +1,55 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PyKayacIM 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-09 13:46+0900\n"
+"PO-Revision-Date: 2015-09-09 14:56+0900\n"
+"Last-Translator: Hamukichi (Nombiri) <hamukichi-dev@outlook.jp>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: ..\..\prerequisites.rst:2
+msgid "Prerequisites"
+msgstr "動作条件"
+
+#: ..\..\prerequisites.rst:4
+msgid ""
+"PyKayacIM is compatible with both Python 2.7 and 3.x. It was tested on "
+"CPython (i.e. the regular python) 2.7.10 and 3.4.3."
+msgstr ""
+"PyKayacIMはPython 2.7と3.xの両方と互換性があります。CPython（すなわち、通常の"
+"Python）2.7.10および3.4.3でテストされました。"
+
+#: ..\..\prerequisites.rst:7
+msgid ""
+"The package `Python-Future <http://python-future.org/>`_ is required by "
+"PyKayacIM. Execute ``pip install future`` to install this package using `pip "
+"<https://pip.pypa.io/>`_."
+msgstr ""
+"パッケージ `Python-Future <http://python-future.org/>`_ をPyKayacIMは必要とし"
+"ます。 ``pip install future`` を実行し、 `pip <https://pip.pypa.io/>`_ を用い"
+"てこのパッケージをインストールしてください。"
+
+#: ..\..\prerequisites.rst:11
+msgid ""
+"To use PyKayacIM on Python <2.7 additional packages such as `argparse "
+"<https://pypi.python.org/pypi/argparse>`_ may be necessary."
+msgstr ""
+"2.7より古いPythonでPyKayacIMを利用するには、 `argparse <https://pypi.python."
+"org/pypi/argparse>`_ のような追加のパッケージが必要になるかもしれません。"
+
+#: ..\..\prerequisites.rst:15
+msgid ""
+"To make use of PyKayacIM you should have a valid im.kayac.com account. To "
+"activate one, access the website `im.kayac.com <http://im.kayac.com/en/>`_ "
+"(in English) or `its Japanese version <http://im.kayac.com/ja/>`_, and "
+"follow the instructions."
+msgstr ""
+"PyKayacIMを利用するには、有効なim.kayac.comアカウントを持つべきです。これを有"
+"効化するには、ウェブサイト `im.kayac.com <http://im.kayac.com/en/>`_ （英語"
+"版）あるいは `その日本語版 <http://im.kayac.com/ja/>`_ にアクセスし、その指示"
+"に従ってください。"

@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>APIドキュメント &mdash; PyKayacIM 0.1.0 ドキュメント</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="PyKayacIM 0.1.0 ドキュメント" href="index.html" />
+    <link rel="prev" title="簡単な使用法" href="simpleusage.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> |</li>
+        <li class="right" >
+          <a href="simpleusage.html" title="簡単な使用法"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyKayacIM 0.1.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="api-documentation">
+<h1>APIドキュメント<a class="headerlink" href="#api-documentation" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="module-pykayacim.api">
+<span id="pykayacim-api"></span><h2>pykayacim.api<a class="headerlink" href="#module-pykayacim.api" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>このモジュールはim.kayac.comと通信するためのものです。</p>
+<dl class="class">
+<dt id="pykayacim.api.KayacIMAPI">
+<em class="property">class </em><code class="descclassname">pykayacim.api.</code><code class="descname">KayacIMAPI</code><span class="sig-paren">(</span><em>username</em>, <em>method='none'</em>, <em>key=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pykayacim/api.html#KayacIMAPI"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#pykayacim.api.KayacIMAPI" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>im.kayac.com APIを利用するためのクラスです。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>username</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; あなたのアカウントのユーザ名です。</li>
+<li><strong>method</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; （任意）認証方法です。 <a class="reference internal" href="#pykayacim.constants.KAYACIM_METHODS" title="pykayacim.constants.KAYACIM_METHODS"><code class="xref py py-data docutils literal"><span class="pre">pykayacim.constants.KAYACIM_METHODS</span></code></a> から選択してください。</li>
+<li><strong>key</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; （任意）パスワードあるいは秘密鍵です。</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">例外 <a class="reference internal" href="#pykayacim.exceptions.PyKayacIMMethodError" title="pykayacim.exceptions.PyKayacIMMethodError">pykayacim.exceptions.PyKayacIMMethodError</a>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">利用不可能の方法が指定されたか、与えられた情報が不十分であるとき</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="pykayacim.api.KayacIMAPI.key">
+<code class="descname">key</code><em class="property"> = None</em><a class="headerlink" href="#pykayacim.api.KayacIMAPI.key" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>パスワードあるいは秘密鍵です。</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pykayacim.api.KayacIMAPI.method">
+<code class="descname">method</code><em class="property"> = None</em><a class="headerlink" href="#pykayacim.api.KayacIMAPI.method" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>im.kayac.comが受け入れる認証方法です。</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pykayacim.api.KayacIMAPI.post_params">
+<code class="descname">post_params</code><em class="property"> = None</em><a class="headerlink" href="#pykayacim.api.KayacIMAPI.post_params" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>POST要求のパラメータです。</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pykayacim.api.KayacIMAPI.post_request">
+<code class="descname">post_request</code><em class="property"> = None</em><a class="headerlink" href="#pykayacim.api.KayacIMAPI.post_request" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>im.kayac.comに送信された要求を表すオブジェクトです。</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pykayacim.api.KayacIMAPI.post_response">
+<code class="descname">post_response</code><em class="property"> = None</em><a class="headerlink" href="#pykayacim.api.KayacIMAPI.post_response" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>im.kayac.comからの応答を表す辞書です。</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pykayacim.api.KayacIMAPI.post_url">
+<code class="descname">post_url</code><em class="property"> = None</em><a class="headerlink" href="#pykayacim.api.KayacIMAPI.post_url" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>POST要求を送信すべきURLです。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pykayacim.api.KayacIMAPI.prepare_parameters">
+<code class="descname">prepare_parameters</code><span class="sig-paren">(</span><em>message</em>, <em>handler=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pykayacim/api.html#KayacIMAPI.prepare_parameters"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#pykayacim.api.KayacIMAPI.prepare_parameters" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>与えられたパラメータを表す辞書を作成します。</p>
+<p>このメソッドは <a class="reference internal" href="#pykayacim.api.KayacIMAPI.send" title="pykayacim.api.KayacIMAPI.send"><code class="xref py py-meth docutils literal"><span class="pre">pykayacim.api.KayacIMAPI.send()</span></code></a> により呼び出され、直接呼び出す必要はありません。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first last simple">
+<li><strong>message</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; 送信すべきメッセージです。</li>
+<li><strong>handler</strong> &#8211; （任意）iPhoneアプリケーションのためのURIスキームです。これはたとえば &#8220;mailto:&#8221; で始まります。</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pykayacim.api.KayacIMAPI.resend">
+<code class="descname">resend</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pykayacim/api.html#KayacIMAPI.resend"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#pykayacim.api.KayacIMAPI.resend" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>直前のメッセージを再送信します。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">例外:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#pykayacim.exceptions.PyKayacIMAPIError" title="pykayacim.exceptions.PyKayacIMAPIError"><strong>pykayacim.exceptions.PyKayacIMAPIError</strong></a> &#8211; im.kayac.comがエラーを伝えたとき</li>
+<li><a class="reference internal" href="#pykayacim.exceptions.PyKayacIMCommunicationError" title="pykayacim.exceptions.PyKayacIMCommunicationError"><strong>pykayacim.exceptions.PyKayacIMCommunicationError</strong></a> &#8211; im.kayac.comとの接続に失敗したとき</li>
+<li><a class="reference internal" href="#pykayacim.exceptions.PyKayacIMMessageError" title="pykayacim.exceptions.PyKayacIMMessageError"><strong>pykayacim.exceptions.PyKayacIMMessageError</strong></a> &#8211; 以前にまったくメッセージが送信されていないとき</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pykayacim.api.KayacIMAPI.send">
+<code class="descname">send</code><span class="sig-paren">(</span><em>message</em>, <em>handler=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pykayacim/api.html#KayacIMAPI.send"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#pykayacim.api.KayacIMAPI.send" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>im.kayac.com経由でプッシュ通知を送信します。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>message</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; 送信すべきメッセージです。</li>
+<li><strong>handler</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; （任意）iPhoneアプリケーションのためのURIスキームです。これはたとえば &#8220;mailto:&#8221; で始まります。</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">例外:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#pykayacim.exceptions.PyKayacIMAPIError" title="pykayacim.exceptions.PyKayacIMAPIError"><strong>pykayacim.exceptions.PyKayacIMAPIError</strong></a> &#8211; im.kayac.comがエラーを伝えたとき</li>
+<li><a class="reference internal" href="#pykayacim.exceptions.PyKayacIMCommunicationError" title="pykayacim.exceptions.PyKayacIMCommunicationError"><strong>pykayacim.exceptions.PyKayacIMCommunicationError</strong></a> &#8211; im.kayac.comとの接続に失敗したとき</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pykayacim.api.KayacIMAPI.username">
+<code class="descname">username</code><em class="property"> = None</em><a class="headerlink" href="#pykayacim.api.KayacIMAPI.username" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>あなたのim.kayac.comアカウントのユーザ名です。</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="data">
+<dt id="pykayacim.api.api_logger">
+<code class="descclassname">pykayacim.api.</code><code class="descname">api_logger</code><em class="property"> = &lt;logging.Logger object at 0x000000000517B208&gt;</em><a class="headerlink" href="#pykayacim.api.api_logger" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>このモジュールのロガーです。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pykayacim.api.create_post_request">
+<code class="descclassname">pykayacim.api.</code><code class="descname">create_post_request</code><span class="sig-paren">(</span><em>url</em>, <em>params</em>, <em>encoding='utf-8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pykayacim/api.html#create_post_request"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#pykayacim.api.create_post_request" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>パラメータをURLエンコードし、POST要求を作成します。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><ul class="first simple">
+<li><strong>url</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; POST要求を送信すべきURLです。</li>
+<li><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3.4/library/stdtypes.html#dict" title="(in Python v3.4)"><em>dict</em></a>) &#8211; パラメータを表す辞書です。その値は文字列型（Python 3上）あるいはUnicode文字列型（Python 2上）であるべきです。</li>
+<li><strong>encoding</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; 使用すべきエンコーディングです。</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body"><p class="first">HTTP POST要求です。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">戻り値の型:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3.4/library/urllib.request.html#urllib.request.Request" title="(in Python v3.4)"><code class="xref py py-class docutils literal"><span class="pre">urllib.request.Request</span></code></a> （Python 3上）あるいは <code class="xref py py-class docutils literal"><span class="pre">future.backports.urllib.request.Request</span></code> （Python 2上）</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pykayacim.api.generate_signature">
+<code class="descclassname">pykayacim.api.</code><code class="descname">generate_signature</code><span class="sig-paren">(</span><em>data</em>, <em>encoding='utf-8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pykayacim/api.html#generate_signature"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#pykayacim.api.generate_signature" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>与えられた文字列のSHA-1ダイジェストを生成します。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><strong>data</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; 処理すべき文字列です。</td>
+</tr>
+<tr class="field-even field"><th class="field-name">戻り値:</th><td class="field-body">SHA-1ダイジェストです。</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">戻り値の型:</th><td class="field-body">文字列型（Python 3上）あるいは <code class="xref py py-class docutils literal"><span class="pre">future.types.newstr.newstr</span></code> （Python 2上）</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">上述のように、 <a class="reference internal" href="#module-pykayacim.api" title="pykayacim.api"><code class="xref py py-mod docutils literal"><span class="pre">pykayacim.api</span></code></a> はPythonの <a class="reference external" href="https://docs.python.org/3.4/library/logging.html#module-logging" title="(in Python v3.4)"><code class="xref py py-mod docutils literal"><span class="pre">logging</span></code></a> 機構を使用します。あなたのアプリケーションから <a class="reference internal" href="#module-pykayacim.api" title="pykayacim.api"><code class="xref py py-mod docutils literal"><span class="pre">pykayacim.api</span></code></a> で定義されているロガーを利用し、そのログを処理することができます。</p>
+</div>
+</div>
+<div class="section" id="module-pykayacim.constants">
+<span id="pykayacim-constants"></span><h2>pykayacim.constants<a class="headerlink" href="#module-pykayacim.constants" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>このモジュールはPyKayacIMの定数を含みます。</p>
+<dl class="data">
+<dt id="pykayacim.constants.KAYACIM_ENCODING">
+<code class="descclassname">pykayacim.constants.</code><code class="descname">KAYACIM_ENCODING</code><em class="property"> = 'utf-8'</em><a class="headerlink" href="#pykayacim.constants.KAYACIM_ENCODING" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>im.kayac.comが受け入れるエンコーディングです。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pykayacim.constants.KAYACIM_METHODS">
+<code class="descclassname">pykayacim.constants.</code><code class="descname">KAYACIM_METHODS</code><em class="property"> = ['none', 'password', 'secret']</em><a class="headerlink" href="#pykayacim.constants.KAYACIM_METHODS" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>im.kayac.comが受け入れる認証方法です。</p>
+<dl class="docutils">
+<dt>&#8220;none&#8221;</dt>
+<dd><p class="first last">認証を行いません。</p>
+</dd>
+<dt>&#8220;password&#8221;</dt>
+<dd><p class="first last">パスワードでの認証を使用します。</p>
+</dd>
+<dt>&#8220;secret&#8221;</dt>
+<dd><p class="first last">秘密鍵暗号法を用います。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="data">
+<dt id="pykayacim.constants.KAYACIM_URL">
+<code class="descclassname">pykayacim.constants.</code><code class="descname">KAYACIM_URL</code><em class="property"> = 'http://im.kayac.com/api/post/'</em><a class="headerlink" href="#pykayacim.constants.KAYACIM_URL" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>APIエンドポイントのURLです。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pykayacim.exceptions">
+<span id="pykayacim-exceptions"></span><h2>pykayacim.exceptions<a class="headerlink" href="#module-pykayacim.exceptions" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>このモジュールはPyKayacIMの例外を含みます。</p>
+<dl class="exception">
+<dt id="pykayacim.exceptions.PyKayacIMAPIError">
+<em class="property">exception </em><code class="descclassname">pykayacim.exceptions.</code><code class="descname">PyKayacIMAPIError</code><span class="sig-paren">(</span><em>errmsg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pykayacim/exceptions.html#PyKayacIMAPIError"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#pykayacim.exceptions.PyKayacIMAPIError" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>im.kayac.comがエラーを伝えたときに発生します。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><strong>errmsg</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; エラーに関する詳細情報です。</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pykayacim.exceptions.PyKayacIMCommunicationError">
+<em class="property">exception </em><code class="descclassname">pykayacim.exceptions.</code><code class="descname">PyKayacIMCommunicationError</code><span class="sig-paren">(</span><em>reason</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pykayacim/exceptions.html#PyKayacIMCommunicationError"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#pykayacim.exceptions.PyKayacIMCommunicationError" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>im.kayac.comとの通信に失敗すると発生します。</p>
+<p>このモジュールがim.kayac.comとの接続を確立できないか、HTTPエラーが起こると、この例外が発生するでしょう。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><strong>reason</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; 通信に失敗した理由です。</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pykayacim.exceptions.PyKayacIMError">
+<em class="property">exception </em><code class="descclassname">pykayacim.exceptions.</code><code class="descname">PyKayacIMError</code><a class="reference internal" href="_modules/pykayacim/exceptions.html#PyKayacIMError"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#pykayacim.exceptions.PyKayacIMError" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>このモジュールにおける例外の基底クラスです。</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pykayacim.exceptions.PyKayacIMMessageError">
+<em class="property">exception </em><code class="descclassname">pykayacim.exceptions.</code><code class="descname">PyKayacIMMessageError</code><span class="sig-paren">(</span><em>details</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pykayacim/exceptions.html#PyKayacIMMessageError"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#pykayacim.exceptions.PyKayacIMMessageError" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>送信すべきメッセージに何か問題があるときに発生します。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><strong>details</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; 問題に関する詳細情報です。</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pykayacim.exceptions.PyKayacIMMethodError">
+<em class="property">exception </em><code class="descclassname">pykayacim.exceptions.</code><code class="descname">PyKayacIMMethodError</code><span class="sig-paren">(</span><em>details</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pykayacim/exceptions.html#PyKayacIMMethodError"><span class="viewcode-link">[ソース]</span></a><a class="headerlink" href="#pykayacim.exceptions.PyKayacIMMethodError" title="この定義へのパーマリンク">¶</a></dt>
+<dd><p>認証方法に問題があるときに発生します。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">パラメタ:</th><td class="field-body"><strong>details</strong> (<em>str (on Python 3) or unicode (on Python 2)</em>) &#8211; 問題に関する詳細情報です。</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">APIドキュメント</a><ul>
+<li><a class="reference internal" href="#module-pykayacim.api">pykayacim.api</a></li>
+<li><a class="reference internal" href="#module-pykayacim.constants">pykayacim.constants</a></li>
+<li><a class="reference internal" href="#module-pykayacim.exceptions">pykayacim.exceptions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="simpleusage.html"
+                        title="前の章へ">簡単な使用法</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="検索" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    モジュール、クラス、または関数名を入力してください
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Pythonモジュール索引"
+             >モジュール</a> |</li>
+        <li class="right" >
+          <a href="simpleusage.html" title="簡単な使用法"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyKayacIM 0.1.0 ドキュメント</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Hamukichi (Nombiri).
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1 で生成しました。
+    </div>
+  </body>
+</html>
