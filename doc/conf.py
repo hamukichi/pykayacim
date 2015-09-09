@@ -122,7 +122,8 @@ html_theme = 'alabaster'
 html_theme_options = {
     "github_user": "hamukichi",
     "github_repo": "pykayacim",
-    "github_button": "true"}
+    "github_button": "true",
+    "github_button_count": "false"}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
