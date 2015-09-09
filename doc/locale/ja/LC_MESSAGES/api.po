@@ -1,0 +1,292 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PyKayacIM 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-09 13:46+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ..\..\api.rst:2
+msgid "API Documentation"
+msgstr ""
+
+#: ..\..\api.rst:5
+msgid "pykayacim.api"
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api:1
+msgid "This module is for communicating with im.kayac.com."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI:1
+msgid "Class for accessing im.kayac.com API."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI:3
+msgid "The username for your account."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI:5
+msgid ""
+"(optional) The authorization method. Choose from "
+":data:`pykayacim.constants.KAYACIM_METHODS`."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI:9
+msgid "(optional) The password or secret key."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI:11
+msgid ""
+"if an unavailable method is specified or the provided information is "
+"insufficient"
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.key:1
+msgid "The password or secret key."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.method:1
+msgid "The authorization method im.kayac.com accepts."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of
+#: pykayacim.api.KayacIMAPI.post_params:1
+msgid "The parameters for a POST request."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of
+#: pykayacim.api.KayacIMAPI.post_request:1
+msgid "The object representing the request sent to im.kayac.com."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of
+#: pykayacim.api.KayacIMAPI.post_response:1
+msgid "The dictionary representing the response from im.kayac.com."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.post_url:1
+msgid "The URL where POST requests should be sent."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of
+#: pykayacim.api.KayacIMAPI.prepare_parameters:1
+msgid "Creates a dictionary representing the provided parameters."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of
+#: pykayacim.api.KayacIMAPI.prepare_parameters:3
+msgid ""
+"This method is called by :meth:`pykayacim.api.KayacIMAPI.send`, and does not"
+" need to be called directly."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of
+#: pykayacim.api.KayacIMAPI.prepare_parameters:7
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.send:3
+msgid "The message which should be sent."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of
+#: pykayacim.api.KayacIMAPI.prepare_parameters:9
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.send:5
+msgid ""
+"(optional) The URI scheme for iPhone applications, which starts with "
+"\"mailto:\" for example."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.resend:1
+msgid "Resend the previous message."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.resend:3
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.send:8
+msgid "if im.kayac.com reports an error"
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.resend:5
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.send:10
+msgid "if connection with im.kayac.com fails"
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.resend:10
+msgid "if no message was sent previously"
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.send:1
+msgid "Send a push notification via im.kayac.com."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.KayacIMAPI.username:1
+msgid "The username for your im.kayac.com account."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.api_logger:1
+msgid "The logger for this module."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.create_post_request:1
+msgid "URL-encode the parameters and create a POST request."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.create_post_request:3
+msgid "The URL where a POST request should be sent."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.create_post_request:5
+msgid ""
+"The dictionary representing the parameters, whose values should be str (on "
+"Python 3) or unicode (on Python 2)."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.create_post_request:8
+msgid "The encoding should be used."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.create_post_request:10
+msgid "an HTTP POST request"
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.create_post_request:11
+msgid ""
+":class:`urllib.request.Request` (on Python 3) or "
+":class:`future.backports.urllib.request.Request` (on Python 2)"
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.generate_signature:1
+msgid "Generate the SHA-1 digest of the given string."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.generate_signature:3
+msgid "The string should be processed."
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.generate_signature:5
+msgid "the SHA-1 digest"
+msgstr ""
+
+#: ..\..\..\pykayacim\api.pydocstring of pykayacim.api.generate_signature:6
+msgid "str (on Python 3) or :class:`future.types.newstr.newstr` (on Python 2)"
+msgstr ""
+
+#: ..\..\api.rst:11
+msgid ""
+"As above, :py:mod:`pykayacim.api` uses the :py:mod:`logging` system of "
+"Python. From your application you can access the logger defined in "
+":py:mod:`pykayacim.api` to process the log."
+msgstr ""
+
+#: ..\..\api.rst:16
+msgid "pykayacim.constants"
+msgstr ""
+
+#: ..\..\..\pykayacim\constants.pydocstring of pykayacim.constants:1
+msgid "This module contains constants for PyKayacIM."
+msgstr ""
+
+#: ..\..\..\pykayacim\constants.pydocstring of
+#: pykayacim.constants.KAYACIM_ENCODING:1
+msgid "Encoding im.kayac.com accepts."
+msgstr ""
+
+#: ..\..\..\pykayacim\constants.pydocstring of
+#: pykayacim.constants.KAYACIM_METHODS:1
+msgid "The authorization methods im.kayac.com accepts."
+msgstr ""
+
+#: ..\..\..\pykayacim\constants.pydocstring of
+#: pykayacim.constants.KAYACIM_METHODS:4
+msgid "\"none\""
+msgstr ""
+
+#: ..\..\..\pykayacim\constants.pydocstring of
+#: pykayacim.constants.KAYACIM_METHODS:4
+msgid "No authorization."
+msgstr ""
+
+#: ..\..\..\pykayacim\constants.pydocstring of
+#: pykayacim.constants.KAYACIM_METHODS:7
+msgid "\"password\""
+msgstr ""
+
+#: ..\..\..\pykayacim\constants.pydocstring of
+#: pykayacim.constants.KAYACIM_METHODS:7
+msgid "Use authorization with a password."
+msgstr ""
+
+#: ..\..\..\pykayacim\constants.pydocstring of
+#: pykayacim.constants.KAYACIM_METHODS:9
+msgid "\"secret\""
+msgstr ""
+
+#: ..\..\..\pykayacim\constants.pydocstring of
+#: pykayacim.constants.KAYACIM_METHODS:10
+msgid "Use secret key cryptosystem."
+msgstr ""
+
+#: ..\..\..\pykayacim\constants.pydocstring of
+#: pykayacim.constants.KAYACIM_URL:1
+msgid "The URL of the API endpoint."
+msgstr ""
+
+#: ..\..\api.rst:22
+msgid "pykayacim.exceptions"
+msgstr ""
+
+#: ..\..\..\pykayacim\exceptions.pydocstring of pykayacim.exceptions:1
+msgid "This module contains exceptions of PyKayacIM."
+msgstr ""
+
+#: ..\..\..\pykayacim\exceptions.pydocstring of
+#: pykayacim.exceptions.PyKayacIMAPIError:1
+msgid "Raised when im.kayac.com reports an error."
+msgstr ""
+
+#: ..\..\..\pykayacim\exceptions.pydocstring of
+#: pykayacim.exceptions.PyKayacIMAPIError:3
+msgid "The detailed information about the error."
+msgstr ""
+
+#: ..\..\..\pykayacim\exceptions.pydocstring of
+#: pykayacim.exceptions.PyKayacIMCommunicationError:1
+msgid "Raised when communication with im.kayac.com fails."
+msgstr ""
+
+#: ..\..\..\pykayacim\exceptions.pydocstring of
+#: pykayacim.exceptions.PyKayacIMCommunicationError:3
+msgid ""
+"This exception will be raised when this module cannot establish connection "
+"with im.kayac.com, or an HTTP error occurs."
+msgstr ""
+
+#: ..\..\..\pykayacim\exceptions.pydocstring of
+#: pykayacim.exceptions.PyKayacIMCommunicationError:6
+msgid "The reason why the communication failed."
+msgstr ""
+
+#: ..\..\..\pykayacim\exceptions.pydocstring of
+#: pykayacim.exceptions.PyKayacIMError:1
+msgid "This is the base class for the exceptions in this module."
+msgstr ""
+
+#: ..\..\..\pykayacim\exceptions.pydocstring of
+#: pykayacim.exceptions.PyKayacIMMessageError:1
+msgid "Raised when there is something wrong with the message to be sent."
+msgstr ""
+
+#: ..\..\..\pykayacim\exceptions.pydocstring of
+#: pykayacim.exceptions.PyKayacIMMessageError:3
+#: ..\..\..\pykayacim\exceptions.pydocstring of
+#: pykayacim.exceptions.PyKayacIMMethodError:3
+msgid "The detailed information about the problem."
+msgstr ""
+
+#: ..\..\..\pykayacim\exceptions.pydocstring of
+#: pykayacim.exceptions.PyKayacIMMethodError:1
+msgid "Raised when there is a problem about the authorization method."
+msgstr ""

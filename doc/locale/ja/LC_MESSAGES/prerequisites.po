@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PyKayacIM 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-09 13:46+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ..\..\prerequisites.rst:2
+msgid "Prerequisites"
+msgstr ""
+
+#: ..\..\prerequisites.rst:4
+msgid ""
+"PyKayacIM is compatible with both Python 2.7 and 3.x. It was tested on "
+"CPython (i.e. the regular python) 2.7.10 and 3.4.3."
+msgstr ""
+
+#: ..\..\prerequisites.rst:7
+msgid ""
+"The package `Python-Future <http://python-future.org/>`_ is required by "
+"PyKayacIM. Execute ``pip install future`` to install this package using `pip"
+" <https://pip.pypa.io/>`_."
+msgstr ""
+
+#: ..\..\prerequisites.rst:11
+msgid ""
+"To use PyKayacIM on Python <2.7 additional packages such as `argparse "
+"<https://pypi.python.org/pypi/argparse>`_ may be necessary."
+msgstr ""
+
+#: ..\..\prerequisites.rst:15
+msgid ""
+"To make use of PyKayacIM you should have a valid im.kayac.com account. To "
+"activate one, access the website `im.kayac.com <http://im.kayac.com/en/>`_ "
+"(in English) or `its Japanese version <http://im.kayac.com/ja/>`_, and "
+"follow the instructions."
+msgstr ""

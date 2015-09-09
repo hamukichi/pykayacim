@@ -1,0 +1,53 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PyKayacIM 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-09 13:46+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ..\..\simpleusage.rst:2
+msgid "Simple Usage"
+msgstr ""
+
+#: ..\..\simpleusage.rst:5
+msgid "Try PyKayacIM on the Python interactive interpereter"
+msgstr ""
+
+#: ..\..\simpleusage.rst:7
+msgid ""
+"To send a push notification using PyKayacIM, just follow these three steps:"
+msgstr ""
+
+#: ..\..\simpleusage.rst:9
+msgid ""
+"Import the module :py:mod:`pykayacim.api` , which is the core module of "
+"PyKayacIM."
+msgstr ""
+
+#: ..\..\simpleusage.rst:11
+msgid ""
+"Intialize an instance of :py:class:`pykayacim.api.KayacIMAPI` by providing "
+"your user credentials."
+msgstr ""
+
+#: ..\..\simpleusage.rst:13
+msgid ""
+"Invoke :py:meth:`pykayacim.api.KayacIMAPI.send` to send a notification."
+msgstr ""
+
+#: ..\..\simpleusage.rst:33
+msgid "Use the command-line tool of PyKayacIM"
+msgstr ""
+
+#: ..\..\simpleusage.rst:35
+msgid ""
+"PyKayacIM has a command-line tool named ``ezkayacim``. This tool will be "
+"installed into the directory ``Scripts``. For detailed information execute "
+"``ezkayacim --help``."
+msgstr ""
