@@ -14,7 +14,7 @@
 /* -- page layout ----------------------------------------------------------- */
 
 body {
-    font-family: sans-serif;
+    font-family: Verdana, "游ゴシック", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;;
     font-size: 100%;
     background-color: #11303d;
     color: #000;
@@ -278,7 +278,7 @@ th {
 }
 
 .viewcode-back {
-    font-family: sans-serif;
+    font-family: Verdana, "游ゴシック", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;;
 }
 
 div.viewcode-block:target {
