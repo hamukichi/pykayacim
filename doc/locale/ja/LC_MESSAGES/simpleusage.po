@@ -4,46 +4,52 @@ msgstr ""
 "Project-Id-Version: PyKayacIM 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-09 13:46+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2015-09-09 15:02+0900\n"
+"Last-Translator: Hamukichi (Nombiri) <hamukichi-dev@outlook.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: ..\..\simpleusage.rst:2
 msgid "Simple Usage"
-msgstr ""
+msgstr "簡単な使用法"
 
 #: ..\..\simpleusage.rst:5
 msgid "Try PyKayacIM on the Python interactive interpereter"
-msgstr ""
+msgstr "Python対話インタプリタでPyKayacIMを試す"
 
 #: ..\..\simpleusage.rst:7
 msgid ""
 "To send a push notification using PyKayacIM, just follow these three steps:"
 msgstr ""
+"PyKayacIMを用いてプッシュ通知を送信するには、これらの三段階を踏むだけです。"
 
 #: ..\..\simpleusage.rst:9
 msgid ""
 "Import the module :py:mod:`pykayacim.api` , which is the core module of "
 "PyKayacIM."
 msgstr ""
+"モジュール :py:mod:`pykayacim.api` をインポートします。これはPyKayacIMの核と"
+"なるモジュールです。"
 
 #: ..\..\simpleusage.rst:11
 msgid ""
 "Intialize an instance of :py:class:`pykayacim.api.KayacIMAPI` by providing "
 "your user credentials."
 msgstr ""
+"あなたのユーザ資格情報を与えることで、 :py:class:`pykayacim.api.KayacIMAPI` "
+"のインスタンスを初期化します。"
 
 #: ..\..\simpleusage.rst:13
-msgid ""
-"Invoke :py:meth:`pykayacim.api.KayacIMAPI.send` to send a notification."
+msgid "Invoke :py:meth:`pykayacim.api.KayacIMAPI.send` to send a notification."
 msgstr ""
+":py:meth:`pykayacim.api.KayacIMAPI.send` を呼び出し、通知を送信します。"
 
 #: ..\..\simpleusage.rst:33
 msgid "Use the command-line tool of PyKayacIM"
-msgstr ""
+msgstr "PyKayacIMのコマンドラインツールを使用する"
 
 #: ..\..\simpleusage.rst:35
 msgid ""
@@ -51,3 +57,6 @@ msgid ""
 "installed into the directory ``Scripts``. For detailed information execute "
 "``ezkayacim --help``."
 msgstr ""
+"PyKayacIMには ``ezkayacim`` という名前のコマンドラインツールがあります。この"
+"ツールは ``Scripts`` ディレクトリにインストールされるでしょう。詳細情報を得る"
+"には ``ezkayacim --help`` を実行してください。"

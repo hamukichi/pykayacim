@@ -4,46 +4,57 @@ msgstr ""
 "Project-Id-Version: PyKayacIM 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-09 13:46+0900\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2015-09-09 14:50+0900\n"
+"Last-Translator: Hamukichi (Nombiri) <hamukichi-dev@outlook.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: ..\..\installation.rst:2
 msgid "Installation"
-msgstr ""
+msgstr "インストール"
 
 #: ..\..\installation.rst:5
 msgid "From Python Package Index"
-msgstr ""
+msgstr "Python Package Indexから"
 
 #: ..\..\installation.rst:7
 msgid ""
-"PyKayacIM is hosted on `Python Package Index "
-"<https://pypi.python.org/pypi/pykayacim>`_ (PyPI). Execute ``pip install "
-"pykayacim`` to install PyKayacIM from PyPI automatically. Or download and "
-"unpack a source distribution to install PyKayacIM manually."
+"PyKayacIM is hosted on `Python Package Index <https://pypi.python.org/pypi/"
+"pykayacim>`_ (PyPI). Execute ``pip install pykayacim`` to install PyKayacIM "
+"from PyPI automatically. Or download and unpack a source distribution to "
+"install PyKayacIM manually."
 msgstr ""
+"PyKayacIMは `Python Package Index <https://pypi.python.org/pypi/pykayacim>`_ "
+"(PyPI) に登録されています。 ``pip install pykayacim`` を実行して、PyPIから自"
+"動的にPyKayacIMをインストールしてください。あるいはソース配布物をダウンロード"
+"し展開して、手動でPyKayacIMをインストールしてください。"
 
 #: ..\..\installation.rst:14
 msgid ""
-"To execute ``python setup.py install`` `setuptools "
-"<https://pypi.python.org/pypi/setuptools>`_ is necessary."
+"To execute ``python setup.py install`` `setuptools <https://pypi.python.org/"
+"pypi/setuptools>`_ is necessary."
 msgstr ""
+"``python setup.py install`` を実行するには、 `setuptools <https://pypi."
+"python.org/pypi/setuptools>`_ が必要です。"
 
 #: ..\..\installation.rst:19
 msgid "From GitHub"
-msgstr ""
+msgstr "GitHubから"
 
 #: ..\..\installation.rst:21
 msgid ""
-"You can download the source codes and releases from `GitHub "
-"<https://github.com/hamukichi/pykayacim>`_ ."
+"You can download the source codes and releases from `GitHub <https://github."
+"com/hamukichi/pykayacim>`_ ."
 msgstr ""
+"`GitHub <https://github.com/hamukichi/pykayacim>`_ からソースコードとリリース"
+"をダウンロードできます。"
 
 #: ..\..\installation.rst:25
 msgid ""
 "The latest source codes can be unstable and may result in unexpected errors."
 msgstr ""
+"最新のソースコードは不安定であることがあり、予期せぬエラーのもとになるかもし"
+"れません。"
